@@ -39,3 +39,12 @@ def SingleProduct(request) :
 
 def tracking(request) :
     return render(request, 'tracking.html')
+
+def head(request) :
+    return render(request, 'head.html')
+
+def header(request) :
+    return render(request, 'header.html')
+
+def footer(request) :
+    return render(request, 'footer.html')

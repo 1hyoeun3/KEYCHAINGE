@@ -1,18 +1,26 @@
-from django.urls import path
-from . import views
+"""
+URL configuration for KEYCHAINGE project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('main/blog', views.blog, name='blog'),
-    path('main/cart', views.cart, name='cart'),
-    path('main/category', views.category, name='category'),
-    path('main/checkout', views.checkout, name='checkout'),
-    path('main/confirmation', views.confirmation, name='confirmation'),
-    path('main/contact', views.contact, name='contact'),
-    path('main/elements', views.elements, name='elements'),
-    path('main/feature', views.feature, name='feature'),
-    path('main/login', views.login, name='login'),
-    path('main/single-blog', views.SingleBlog, name='SingleBlog'),
-    path('main/single-product', views.SingleProduct, name='SingleProduct'),
-    path('main/tracking', views.tracking, name='tracking'),
-]
+    path('admin/', admin.site.urls),
+    path('', include('main.urls')),
+    path('api/', include('rest_framework.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
